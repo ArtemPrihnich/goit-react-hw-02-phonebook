@@ -49,7 +49,7 @@ export default class App extends Component {
   onDuplicatingName = ({ name }) => {
     const { contacts } = this.state
     const result = contacts.find(contact => {
-      return contact.name === name
+      return contact.name.toLocaleLowerCase() === name.toLocaleLowerCase()
     })
     return result
   }
@@ -71,7 +71,7 @@ export default class App extends Component {
     return (
       <Box>
         <ContactsForm onSubmit={addContact} />
-        <ContactsFilter inputChange={handleChange} />
+        <ContactsFilter inputChange={handleChange} filterValue={this.state.filter} />
         <ContactsList contacts={contacts} onDelete={deleteContact} />
       </Box >
     )
